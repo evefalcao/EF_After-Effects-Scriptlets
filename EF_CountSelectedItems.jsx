@@ -13,8 +13,6 @@
     
     clearOutput();
 
-    // alert(selectedItems.length)
-
     if(selectedItems.length != 0){
         writeLn("Selected items: " + selectedItems.length);
     } else {
