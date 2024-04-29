@@ -13,9 +13,11 @@
     
     clearOutput();
 
-    if(selectedItems != null){
+    // alert(selectedItems.length)
+
+    if(selectedItems.length != 0){
         writeLn("Selected items: " + selectedItems.length);
     } else {
-        alert("Select some project items to continue.")
+        alert("Select some project items to count.")
     }
 })();
