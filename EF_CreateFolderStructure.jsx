@@ -10,7 +10,7 @@
  (function createFolderStructure(){
     app.beginUndoGroup("Create Folder Structure");
 
-    var mainFolders = ["1_Input", "2_PreComps", "3_Output", "Solids"];
+    var mainFolders = ["1_Input", "2_PreComps", "3_Output"];
     var inputSubFolders = ["Stills", "Audio", "Videos", "3D", "Data", "Projects", "Missing"];
     var inputFolderName = "1_Input";
 
