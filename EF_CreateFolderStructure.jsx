@@ -26,17 +26,11 @@
         return myItem;
     }
 
-    function createFolders(mainFoldersList, inputSubFoldersList){
-        for(var folderIndex = 0; folderIndex < mainFoldersList.length; folderIndex++){
-            var currentItem = app.project.items.addFolder(mainFoldersList[folderIndex]);
+    function createFolders(list){
+        for(var folderIndex = 0; folderIndex < list.length; folderIndex++){
+            var currentItem = app.project.items.addFolder(list[folderIndex]);
             currentItem.label = 0;
         }
-
-        for(var folderIndex = 0; folderIndex < inputSubFoldersList.length; folderIndex++){
-            var currentItem = app.project.items.addFolder(inputSubFoldersList[folderIndex]);
-            currentItem.label = 0;
-        }
-
     }
 
     function parentSubFolders(inputSubFoldersList, parentFolder){
@@ -49,7 +43,8 @@
         }
     }
 
-    createFolders(mainFolders, inputSubFolders, inputFolder);
+    createFolders(mainFolders);
+    createFolders(inputSubFolders);
     parentSubFolders(inputSubFolders, inputFolder);
 
     app.endUndoGroup();
