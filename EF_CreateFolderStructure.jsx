@@ -12,7 +12,7 @@
 
     var mainFolders = ["1_Input", "2_PreComps", "3_Output", "Solids"];
     var inputSubFolders = ["Stills", "Audio", "Videos", "3D", "Data", "Projects", "Missing"];
-    var inputFolder = "1_Input";
+    var inputFolderName = "1_Input";
 
     function findItemByName(itemName){
         var myItem;
@@ -33,19 +33,19 @@
         }
     }
 
-    function parentSubFolders(inputSubFoldersList, parentFolder){
-        var myFolder = findItemByName(parentFolder);
-        var currentItem;
+    function parentSubFolders(childFolders, parentName){
+        var parent = findItemByName(parentName);
+        var child;
 
-        for (var item = 0; item < inputSubFoldersList.length; item++){
-            currentItem = findItemByName(inputSubFoldersList[item]);
-            currentItem.parentFolder = myFolder;
+        for (var childIndex = 0; childIndex < childFolders.length; childIndex++){
+            child = findItemByName(childFolders[childIndex]);
+            child.parentFolder = parent;
         }
     }
 
     createFolders(mainFolders);
     createFolders(inputSubFolders);
-    parentSubFolders(inputSubFolders, inputFolder);
+    parentSubFolders(inputSubFolders, inputFolderName);
 
     app.endUndoGroup();
  })();
