@@ -7,7 +7,7 @@
  * @description    :  Add selected precomp (selected compositions layers inside an active composition) to the render queue. Skip any other layer that is not a composition.
  *========================================================================**/
 
-(function addSelectedLayerToRQ{
+(function addSelectedLayerToRQ(){
     var comp = app.project.activeItem;
     var layers = comp.selectedLayers;
 
