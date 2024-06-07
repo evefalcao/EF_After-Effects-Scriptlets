@@ -9,7 +9,6 @@
 
 (function cleanRenderQueue(){
     var rq = app.project.renderQueue;
-    var rqItems = rq.items;
 
     for(var item = rq.numItems; item != 0; item--){
         rq.item(item).remove();
