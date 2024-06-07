@@ -1,5 +1,5 @@
 /**========================================================================
- * ?                     EF_CleanPropertyKeyframes.jsx
+ * ?                  EF_CleanPropertyKeyframes.jsx
  * @author         :  Eveline Falcão (https://evelinefalcao.com)
  * @email          :  hello@evelinefalcao.com
  * @version        :  1.0.0

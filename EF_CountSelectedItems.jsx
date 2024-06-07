@@ -1,5 +1,5 @@
 /**========================================================================
- * ?                     EF_CountSelectedItems.jsx
+ * ?                  EF_CountSelectedItems.jsx
  * @author         :  Eveline Falcão (https://evelinefalcao.com)
  * @email          :  hello@evelinefalcao.com
  * @version        :  1.0.0
