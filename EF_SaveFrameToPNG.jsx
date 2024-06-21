@@ -16,8 +16,6 @@
     var comp = app.project.activeItem;
     var projectPath = app.project.file.toString().replace(".aep", "");
     var currentTime = comp.time;
-    var frameDuration = comp.frameDuration;
-    var formattedTime = currentTime.toString();
     var frameRate = comp.frameRate;
     var currentFrame = currentTimeToFrames(currentTime, frameRate).toFixed();
 
