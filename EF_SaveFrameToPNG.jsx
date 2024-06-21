@@ -10,7 +10,7 @@
 (function saveFrameToPNG(){
 
     function currentTimeToFrames(currentTime, frameRate){
-        return Math.round(currentTime * frameRate);;
+        return Math.round(currentTime * frameRate);
     }
 
     var comp = app.project.activeItem;
