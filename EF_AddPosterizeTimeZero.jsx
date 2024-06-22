@@ -7,8 +7,6 @@
  * @description    :  Add "PosterizeTime(0);" to the beginning of all the selected properties expressions.
  *========================================================================**/
 
-var scriptletName = "'Add Posterize Time Zero'";
-
 function addPosterizeTimeZero(property){
     var propertyExpression = property.expression;
     // if the property has no keyframes or animation driven by expression, apply posterizeTime(0), else leave as is
@@ -18,6 +16,9 @@ function addPosterizeTimeZero(property){
 }
 
 (function mainScriptlet(){
+    
+    var scriptletName = "'Add Posterize Time Zero'";
+
     app.beginUndoGroup(scriptletName);
 
     var comp = app.project.activeItem;
