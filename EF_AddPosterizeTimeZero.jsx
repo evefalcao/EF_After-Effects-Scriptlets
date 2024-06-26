@@ -22,7 +22,7 @@ function addPosterizeTimeZero(property){
     app.beginUndoGroup(scriptletName);
 
     var comp = app.project.activeItem;
-    var layers = comp.selectedLayers;
+    // var layers = comp.selectedLayers;
 
     if(comp instanceof CompItem && comp != null) {
         var allProperties = comp.selectedProperties;
