@@ -36,7 +36,7 @@
     // Write the file
     if (file != null) {
         file.open("w");
-        file.writeln(missingItemsString);
+        file.write(missingItemsString);
         file.close();
     }
 
