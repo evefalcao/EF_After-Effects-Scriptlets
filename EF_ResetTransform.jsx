@@ -37,7 +37,7 @@
     function setPropertyValue(comp, property, value){
         // Function inspired by zl_CreatePivotalNull_setKeys
         var currentTime = comp.time;
-        if(property.isTimeVarying == true){
+        if(property.isTimeVarying){
             var nearestKeyframeIndex = property.nearestKeyIndex(currentTime);
             property.setValueAtKey(nearestKeyframeIndex, value);
         } else {
