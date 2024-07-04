@@ -4,7 +4,7 @@
  * @email          :  hello@evelinefalcao.com
  * @version        :  1.0.0
  * @createdFor     :  Adobe After Effects CC 2024 (Version 24.1.0 Build 78)
- * @description    :  Shows layer size and position in the Info Panel. The position shown is relative to parent and the position in the world.
+ * @description    :  Shows layer size and position in the Info Panel. The position shown is relative to parent and the position in the comp.
  *========================================================================**/
 
 (function showLayerSizeAndPosition(){
@@ -49,10 +49,10 @@
         positionProp.expression = "";
         positionProp.expression =
             "l = thisLayer;\rtry {\r" +
-            "   l.toWorld(l.anchorPoint);\r" +
+            "   l.toComp(l.anchorPoint);\r" +
             "}\r" +
             "catch(e) {\r" +
-            "  l.toWorld(l.anchorPoint);\r" +
+            "  l.toComp(l.anchorPoint);\r" +
             "}";
         positionProp.expressionEnabled = false;
         positionProp.expressionEnabled = true;
@@ -64,7 +64,7 @@
         writeLn("Size: " + "[" + width + ", " + height + "]");
         writeLn("Position: [" + posFixed.x + ", " + posFixed.y + ", " + posFixed.z + "]");
         if(currentLayer.parent) {
-            writeLn("World Pos: [" + newPosFixed.x + ", " + newPosFixed.y + ", " + newPosFixed.z + "]");
+            writeLn("Comp Pos: [" + newPosFixed.x + ", " + newPosFixed.y + ", " + newPosFixed.z + "]");
         }
         
     } else {
