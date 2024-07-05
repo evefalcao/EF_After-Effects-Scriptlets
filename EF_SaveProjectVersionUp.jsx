@@ -30,23 +30,17 @@
 
         return currentVersion;
     }
-    
-    function processProjectName(projectPath){
-        var projectName = projectString.replace(pattern, "").replace(".aep", "");
-        
-        return projectName;
-    }
 
     var project = app.project;
     var projectPath = project.file;
-
+    
     if(!projectPath){
         project.saveWithDialog();
     }
     var pattern = /_v(\d+)/;
-    var projectString = projectPath.toString();
+    var projectString = projectPath.toString().replace(".aep", "");
     var currentVersionInt = findCurrentVersionNumber(pattern, projectString); // identifies current version
-    var newProjString = processProjectName(projectString);
+    var newProjString = projectString.replace(pattern, "");
     var newVersionNumber = currentVersionInt + 1;
 
     var fileObject = new File(newProjString + "_v" + padWithZeros(newVersionNumber, 3) + ".aep");
