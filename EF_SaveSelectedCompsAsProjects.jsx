@@ -41,11 +41,12 @@
     var itemsNames = getSelectedItemsNames(selectedItems);
 
     for(var item = itemsNames.length - 1; item >= 0; item--){
-        var currentItem = getProjectItem(itemsNames[item]); // Find item by name
+        
+        // Find item by name
+        var currentItem = getProjectItem(itemsNames[item]);
 
         if(currentItem instanceof CompItem){
             var curCompName = currentItem.name;
-            alert(curCompName)
 
             // Reduce comp
             try {
@@ -66,6 +67,8 @@
             // Reinitialize the project
             project = app.project;
         }
+
+        // Removes the item from the itemsNames list
         itemsNames.splice(item, 1);
     }
 })()
