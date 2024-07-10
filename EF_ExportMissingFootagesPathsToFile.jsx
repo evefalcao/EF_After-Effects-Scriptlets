@@ -7,7 +7,7 @@
  * @description    :  Saves a list of all the missing footages in a project to a text file.
  *========================================================================**/
 
-(function ExportMissingFootagesPathsToFile(){
+(function exportMissingFootagesPathsToFile(){
     var projectItems = app.project.items;
     var missingItems = [];
     var projectPath = app.project.file;
