@@ -9,7 +9,7 @@
 
 (function removeLayersExpressions() {
 
-    app.beginUndoGroup("Remove selected layers expressions.")
+    app.beginUndoGroup("Remove selected layers expressions.");
 
     var comp = app.project.activeItem;
     var layers = comp.selectedLayers;
