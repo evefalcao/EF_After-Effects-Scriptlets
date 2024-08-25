@@ -11,6 +11,11 @@
 
     var selectedItems = app.project.selection;
     
+    // Open Info panel
+    var infoPanelId = app.findMenuCommandId("Info");
+    app.executeCommand(infoPanelId);
+
+    // Clean previous outputs
     clearOutput();
 
     if(selectedItems.length != 0){
