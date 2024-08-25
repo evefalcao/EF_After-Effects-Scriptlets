@@ -1,5 +1,7 @@
 # EF After Effects Scriptlets
 
+[![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/M4M212BC7C)
+
 A collection of useful Adobe After Effects scriptlets designed to streamline your workflow. Each scriptlet can be run directly in After Effects or added to a script launcher like [KBar](https://aescripts.com/kbar/) for easy access.
 
 ## Installation Instructions
