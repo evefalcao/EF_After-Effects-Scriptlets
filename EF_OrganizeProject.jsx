@@ -7,34 +7,15 @@
 * @description       Creates folders and organizes the project items by type into a Comps, Precomps and Assets folders.
 *========================================================================**/
 
-// function main() {
-//     var projectItems = app.project.items;
-
-//     app.beginUndoGroup("'Organize Project'");
-
-//     for (var i = 0; i < projectItems.length; i++) {
-//         var item = projectItems[i];
-//         try {
-//             moveItemToFolder(item);
-//         }
-//         catch (ex) {
-//             alert("Error '" + ex.toString() + "' on item: " + JSON.stringify(item));
-//         }
-//     }
-
-//     app.endUndoGroup();
-// }
-
 (function organizeProject() {
-
 
     var fileTypesObj = {
         "Video": [".crm", ".mxf", ".hevc", ".3pg", ".3g2", ".amc", ".swf", ".flv", ".f4v", ".gif", ".mov", ".mwts", ".m4v", 
-        ".mpg", ".m2p", ".m2v", ".m2a", ".m2t", ".mp4", ".omf", ".avi", ".wmv", ".wma"],
+            ".mpg", ".m2p", ".m2v", ".m2a", ".m2t", ".mp4", ".omf", ".avi", ".wmv", ".wma"],
         "Still": [".ai", ".eps", ".ps", ".pdf", ".psd", ".bmp", ".rle", ".dib", ".tif", ".crw", ".nef", ".raf", ".orf", 
-        ".mrw", ".dcr", ".mos", ".raw", ".pef", ".srf", ".dng", ".x3f", ".cr2", ".erf", ".cin", ".dpx", ".rla", 
-        ".rpf", ".img", ".ei", ".iff", ".tdi", ".jpg", ".jpe", ".heif", ".exr", ".pcx", ".png", ".hdr", ".rgbe", 
-        ".xyze", ".sgi", ".bw", ".rgb", ".pic", ".tga", ".vda", ".icb", ".vst"],
+            ".mrw", ".dcr", ".mos", ".raw", ".pef", ".srf", ".dng", ".x3f", ".cr2", ".erf", ".cin", ".dpx", ".rla", 
+            ".rpf", ".img", ".ei", ".iff", ".tdi", ".jpg", ".jpe", ".heif", ".exr", ".pcx", ".png", ".hdr", ".rgbe", 
+            ".xyze", ".sgi", ".bw", ".rgb", ".pic", ".tga", ".vda", ".icb", ".vst"],
         "Audio": [".aac", ".m4a", ".aif", ".aiff", ".mp3", ".mpeg", ".mpg", ".mpa",  ".mpe",".wav"],
         "Project": [".aep", ".aepx", ".prproj", ".aaf"],
         "Data": [".json", ".mgjson", ".csv", ".tsv", ".txt"],
@@ -69,7 +50,25 @@
         }
         var mainFolders = createMainFolders(categoriesObj, folders);
         createAssetsFolders(categoriesObj, assetFolders);
-        parentSubFolders(categoriesObj.Folders, mainFolders.createdFolders["Assets"].name);
+        parentSubFolders(assetFolders, mainFolders.createdFolders["Assets"].name);
+
+        // Move items
+        for (var key in categoriesObj) {
+            if (key != "Folders") {
+                var targetFolderName = (key == "threeD" ? "3D" : key);
+                moveItemsToFolder(categoriesObj[key], key);
+            }
+        }
+        alert(categoriesObj.Still)
+        // for (var i = 0; i < categoriesObj)
+
+        // // Remove Empty Folders
+        // for (var item = projectItems.length; item > 0; item--) {
+        //     var folderItem = projectItems[item];
+        //     if (folderItem instanceof FolderItem) {
+        //         removeEmptyFolder(folderItem);
+        //     }
+        // }
 
         app.endUndoGroup();
     })();
@@ -85,10 +84,13 @@
         return null;
     }
 
-    function moveItemsToFolder(items, targetFolder) {
+    function moveItemsToFolder(items, targetFolderName) {
         var itemsLength = items.length;
-        for (var item = 0; item < itemsLength; item++) {
-            items[item].parentFolder = targetFolder;
+        var targetFolder = findItemByName(targetFolderName);
+
+        for (var i = 0; i < itemsLength; i++) {
+            var item = findItemByName(items[i]);
+            item.parentFolder = targetFolder;
         }
     }
 
@@ -97,7 +99,9 @@
 
         for (var childIndex = 0; childIndex < childFoldersList.length; childIndex++){
             var child = findItemByName(childFoldersList[childIndex]);
-            child.parentFolder = parent;
+            if (child) {
+                child.parentFolder = parent;
+            }
         }
     }
 
@@ -225,9 +229,10 @@
 
         var existingFolders = categoriesObj.Folders;
         var folders = assetFolders;
-        var folderExists = false;
 
         for (var i = 0; i < folders.length; i++) {
+        var folderExists = false;
+        
             for (var j = 0; j < existingFolders.length; j++) {
                 if (folders[i] === existingFolders[j]) {
                     folderExists = true;
@@ -278,7 +283,7 @@
                             var newFolder = app.project.items.addFolder(folders[i]);
                             newFolder.label = 0;
                         }
-                    break;
+                        break;
                     case "Solids":
                         if (createSolids) {
                             var newFolder = app.project.items.addFolder(folders[i]);
