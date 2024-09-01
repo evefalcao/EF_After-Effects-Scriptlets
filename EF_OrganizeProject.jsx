@@ -20,7 +20,7 @@
         "Project": [".aep", ".aepx", ".prproj", ".aaf"],
         "Data": [".json", ".mgjson", ".csv", ".tsv", ".txt"],
         "Library": [".jsbin", ".jsx"],
-        "threeD": [".c4d", ".obj", ".glb", ".gltf", ".ma"],
+        "3D": [".c4d", ".obj", ".glb", ".gltf", ".ma"],
     };
 
     var categoriesObj = {
@@ -30,15 +30,15 @@
         "Project": [],
         "Data": [],
         "Library": [],
-        "threeD": [],
+        "3D": [],
+        "Solids": [],
         "Comps": [],
         "PreComps": [],
-        "Solids": [],
         "Folders": [],
     };
 
     var folders = ["Comps", "PreComps", "Assets"];
-    var assetFolders = ["Video", "Still", "Audio", "Project", "Data", "Libraries", "3D", "Solids"];
+    var assetFolders = ["Video", "Still", "Audio", "Project", "Data", "Library", "3D", "Solids"];
 
     (function main() {
         var projectItems = app.project.items;
@@ -53,7 +53,7 @@
 
         // Create Folders
         var mainFolders = createMainFolders(categoriesObj, folders);
-        createAssetsFolders(categoriesObj, assetFolders);
+        createAssetsFolders(categoriesObj);
         parentSubFolders(assetFolders, mainFolders.createdFolders["Assets"].name);
 
         // Move items
@@ -65,7 +65,7 @@
                 var targetFolderName = (key == "PreComps" ? "2_PreComps" : key);
                 moveItemsToFolder(categoriesObj[key], targetFolderName);
             } else if (key != "Folders") {
-                var targetFolderName = (key == "threeD" ? "3D" : key);
+                var targetFolderName = key;
                 moveItemsToFolder(categoriesObj[key], targetFolderName);
             }
         }
@@ -120,7 +120,7 @@
     }
 
     function addItemToCategory(item, fileTypesObj, categoriesObj) {
-        var categories = ["Video", "Still", "Audio", "Project", "Data", "Library", "threeD", "Comps", "PreComps", "Solids", "Folders"];
+        var categories = ["Video", "Still", "Audio", "Project", "Data", "Library", "3D", "Comps", "PreComps", "Solids", "Folders"];
         var itemName = item.name;
         var itemFormat = itemName.substring(itemName.lastIndexOf(".")).toLowerCase();
 
@@ -212,90 +212,23 @@
         };
     }
 
-    function createAssetsFolders(categoriesObj, assetFolders) {
-        var createVideo = false;
-        var createStill = false;
-        var createAudio = false;
-        var createProject = false;
-        var createData = false;
-        var createLibrary = false;
-        var create3D = false;
-        var createSolids = false;
-
-        if (categoriesObj.Video.length != 0) createVideo = true;
-        if (categoriesObj.Still.length != 0) createStill = true;
-        if (categoriesObj.Audio.length != 0) createAudio = true;
-        if (categoriesObj.Project.length != 0) createProject = true;
-        if (categoriesObj.Data.length != 0) createData = true;
-        if (categoriesObj.Library.length != 0) createLibrary = true;
-        if (categoriesObj.threeD.length != 0) create3D = true;
-        if (categoriesObj.Solids.length != 0) createSolids = true;
-
-        var existingFolders = categoriesObj.Folders;
-        var folders = assetFolders;
-
-        for (var i = 0; i < folders.length; i++) {
-        var folderExists = false;
-        
-            for (var j = 0; j < existingFolders.length; j++) {
-                if (folders[i] === existingFolders[j]) {
-                    folderExists = true;
-                    break;
-                }
+    function createAssetsFolders(categoriesObj) {
+        for (var key in categoriesObj) {
+            // Skip if the category is Comps, PreComps or Folders
+            if (key == "Comps" || key == "PreComps" || key == "Folders") {
+                continue;
             }
-
-            if (!folderExists) {
-                switch (folders[i]) {
-                    case "Video":
-                        if (createVideo) {
-                            var newFolder = app.project.items.addFolder(folders[i]);
-                            newFolder.label = 0;
-                        }
-                        break;
-                    case "Still":
-                        if (createStill) {
-                            var newFolder = app.project.items.addFolder(folders[i]);
-                            newFolder.label = 0;
-                        }
-                        break;
-                    case "Audio":
-                        if (createAudio) {
-                            var newFolder = app.project.items.addFolder(folders[i]);
-                            newFolder.label = 0;
-                        }
-                        break;
-                    case "Project":
-                        if (createProject) {
-                            var newFolder = app.project.items.addFolder(folders[i]);
-                            newFolder.label = 0;
-                        }
-                        break;
-                    case "Data":
-                        if (createData) {
-                            var newFolder = app.project.items.addFolder(folders[i]);
-                            newFolder.label = 0;
-                        }
-                        break;
-                    case "Library":
-                        if (createLibrary) {
-                            var newFolder = app.project.items.addFolder(folders[i]);
-                            newFolder.label = 0;
-                        }
-                        break;
-                    case "3D":
-                        if (create3D) {
-                            var newFolder = app.project.items.addFolder(folders[i]);
-                            newFolder.label = 0;
-                        }
-                        break;
-                    case "Solids":
-                        if (createSolids) {
-                            var newFolder = app.project.items.addFolder(folders[i]);
-                            newFolder.label = 0;
-                        }
-                        break;
-                }
+            // Skip if category is empty
+            if (categoriesObj[key].length == 0) {
+                continue;
             }
+            // Skit folder creation if folder already exists
+            if (findItemByName(key) != null) {
+                continue;
+            }
+            // Create folders
+            var newFolder = app.project.items.addFolder(key);
+            newFolder.label = 0;
         }
     }
 
