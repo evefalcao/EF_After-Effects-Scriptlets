@@ -4,7 +4,7 @@
 * @email             hello@evelinefalcao.com
 * @version           1.0.0
 * @createdFor        Adobe After Effects CC 2024 (Version 24.1.0 Build 78)
-* @description       Creates folders and organizes the project items by type into a Comps, Precomps and Assets folders.
+* @description       Creates folders and organizes the project items by type into a Comps, PreComps and Assets folders.
 *========================================================================**/
 
 (function organizeProject() {
@@ -32,6 +32,7 @@
         "Library": [],
         "threeD": [],
         "Comps": [],
+        "PreComps": [],
         "Solids": [],
         "Folders": [],
     };
@@ -44,31 +45,38 @@
 
         app.beginUndoGroup("'Organize Project'");
 
+        // Categorize all items
         for (var i = 1; i <= projectItems.length; i++) {
             var item = projectItems[i];
             addItemToCategory(item, fileTypesObj, categoriesObj);
         }
+
+        // Create Folders
         var mainFolders = createMainFolders(categoriesObj, folders);
         createAssetsFolders(categoriesObj, assetFolders);
         parentSubFolders(assetFolders, mainFolders.createdFolders["Assets"].name);
 
         // Move items
         for (var key in categoriesObj) {
-            if (key != "Folders") {
+            if (key == "Comps") {
+                var targetFolderName = (key == "Comps" ? "1_Comps" : key);
+                moveItemsToFolder(categoriesObj[key], targetFolderName);
+            } else if (key == "PreComps") {
+                var targetFolderName = (key == "PreComps" ? "2_PreComps" : key);
+                moveItemsToFolder(categoriesObj[key], targetFolderName);
+            } else if (key != "Folders") {
                 var targetFolderName = (key == "threeD" ? "3D" : key);
-                moveItemsToFolder(categoriesObj[key], key);
+                moveItemsToFolder(categoriesObj[key], targetFolderName);
             }
         }
-        alert(categoriesObj.Still)
-        // for (var i = 0; i < categoriesObj)
 
-        // // Remove Empty Folders
-        // for (var item = projectItems.length; item > 0; item--) {
-        //     var folderItem = projectItems[item];
-        //     if (folderItem instanceof FolderItem) {
-        //         removeEmptyFolder(folderItem);
-        //     }
-        // }
+        // Remove empty folders
+        for (var item = projectItems.length; item > 0; item--) {
+            var folderItem = projectItems[item];
+            if (folderItem instanceof FolderItem) {
+                removeEmptyFolder(folderItem);
+            }
+        }
 
         app.endUndoGroup();
     })();
@@ -89,7 +97,7 @@
         var targetFolder = findItemByName(targetFolderName);
 
         for (var i = 0; i < itemsLength; i++) {
-            var item = findItemByName(items[i]);
+            var item = items[i];
             item.parentFolder = targetFolder;
         }
     }
@@ -112,16 +120,18 @@
     }
 
     function addItemToCategory(item, fileTypesObj, categoriesObj) {
-        var categories = ["Video", "Still", "Audio", "Project", "Data", "Library", "threeD", "Comps", "Solids", "Folders"];
+        var categories = ["Video", "Still", "Audio", "Project", "Data", "Library", "threeD", "Comps", "PreComps", "Solids", "Folders"];
         var itemName = item.name;
         var itemFormat = itemName.substring(itemName.lastIndexOf(".")).toLowerCase();
 
-        if (item instanceof CompItem) {
-            categoriesObj["Comps"].push(itemName);
+        if (item instanceof CompItem && (item.usedIn.length == 0)) {
+            categoriesObj["Comps"].push(item);
+        } else if (item instanceof CompItem && (item.usedIn.length > 0)) {
+            categoriesObj["PreComps"].push(item);
         } else if (item instanceof FolderItem) {
-            categoriesObj["Folders"].push(itemName);
+            categoriesObj["Folders"].push(item);
         } else if (item.mainSource instanceof SolidSource) {
-            categoriesObj["Solids"].push(itemName);
+            categoriesObj["Solids"].push(item);
         } else {
             for (var i = 0; i < categories.length; i++) {
                 var type = categories[i];
@@ -131,7 +141,7 @@
                     var format = fileType[j];
 
                     if (itemFormat == format) {
-                        categoriesObj[type].push(itemName);
+                        categoriesObj[type].push(item);
                         return;
                     }
                 }
@@ -147,18 +157,12 @@
         var folderCounter = 1;
 
         if (categoriesObj.Comps.length != 0) createComp = true;
+        if (categoriesObj.PreComps.length != 0) createPreComp = true;
 
         if (categoriesObj.Video.length != 0 ||categoriesObj.Still.length != 0 ||
         categoriesObj.Audio.length != 0 || categoriesObj.Project.length != 0 ||
         categoriesObj.Data.length != 0 || categoriesObj.Library.length != 0 ||
         categoriesObj.threeD.length != 0 || categoriesObj.Solids.length != 0) createAssets = true;
-        
-        for (var i = 0; i < categoriesObj.Comps.length; i++) {
-            var comp = findItemByName(categoriesObj.Comps[i]);
-            if (comp && comp.usedIn.length > 0) {
-                createPreComp = true;
-            }
-        }
 
         var existingFolders = categoriesObj.Folders;
         var createdFolders = {};
