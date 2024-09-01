@@ -60,6 +60,12 @@ A collection of useful Adobe After Effects scriptlets designed to streamline you
 ### [Lock And Hide](https://github.com/evefalcao/EF_After-Effects-Scriptlets/blob/main/EF_LockAndHide.jsx)
    Locks, activates the "shy" mode, and hides all layers within selected compositions, helping protect complex projects from unwanted edits.
 
+### [Organize Project](https://github.com/evefalcao/EF_After-Effects-Scriptlets/blob/main/EF_LockAndHide.jsx](https://github.com/evefalcao/EF_After-Effects-Scriptlets/blob/main/EF_OrganizeProject.jsx)
+   Sorts project items, tidying up your project based on the item type.
+
+### [Remove Empty Folders](https://github.com/evefalcao/EF_After-Effects-Scriptlets/blob/main/EF_RemoveEmptyFolders.jsx)
+   Removes unused folders in your project panel.
+
 ### [Remove Expressions From Layers](https://github.com/evefalcao/EF_After-Effects-Scriptlets/blob/main/EF_RemoveExpressionsFromLayers.jsx)
    Removes all expressions from selected layers, allowing you to bulk reset animations or values applied via expressions.
 
