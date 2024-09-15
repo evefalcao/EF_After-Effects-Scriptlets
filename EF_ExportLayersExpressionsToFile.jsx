@@ -11,18 +11,21 @@
 
     app.beginUndoGroup("Export Layers Expressions");
 
-    var projectPath = app.project.file;
-    var comp = app.project.activeItem;
+    var project = app.project;
+    var projectPath = project.file;
+    var projectName = projectPath.toString();
+    var comp = project.activeItem;
     var layers = comp.layers;
-    var expressions = ["// " + comp.name];
+    var compName = "/*\n" + "\tProject: " + projectName + "\n\tComposition: " + comp.name + "\n*/";
+    var expressions = [compName];
 
-    function processProperty(property, layerCompName, curLayerName, curLayerIndex) {
+    function processProperty(property, curLayerName, curLayerIndex) {
 
         // Pass a layer or a prop
         if (property.propertyType == PropertyType.PROPERTY) { // Check if value is a single property and do something
 
             if (property.expressionEnabled) {
-                var string = "// On " + curLayerIndex + ": \"" + curLayerName + "\" - " + property.name + "\n\n";
+                var string = "// On " + curLayerIndex + ": \"" + curLayerName + "\" - " + property.name + "\n";
                 var expression = string + property.expression;
                 expressions.push(expression);
             }
@@ -30,7 +33,7 @@
         } else {
 
             for (var i = 1; i <= property.numProperties; i++) {
-                processProperty(property.property(i), layerCompName, curLayerName, curLayerIndex);
+                processProperty(property.property(i), curLayerName, curLayerIndex);
             }
 
         }
@@ -38,14 +41,13 @@
 
     for (var layer = 1; layer <= layers.length; layer++) {
         var currentLayer = layers[layer];
-        var layerCompName = currentLayer.containingComp.name;
         var curLayerName = currentLayer.name;
         var curLayerIndex = currentLayer.index;
         // alert(curLayerName);
-        processProperty(currentLayer, layerCompName, curLayerName, curLayerIndex);
+        processProperty(currentLayer, curLayerName, curLayerIndex);
     }
 
-    // If project is saved
+    // Check if project is saved
     if(projectPath != null){
         var filePath = projectPath.toString().replace(".aep", "");
     } else {
@@ -53,7 +55,7 @@
     }
 
     // Separates each item with three line breaks
-    var expressionsString = expressions.join("\n\n\n");
+    var expressionsString = expressions.join("\n\n");
 
     // Prompt to save the file
     var file = new File(filePath + "_" + comp.name + "_Expressions.txt").saveDlg("Select the file destination.", "*.txt");
