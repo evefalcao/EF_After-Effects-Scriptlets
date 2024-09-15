@@ -9,15 +9,12 @@
 
 (function exportLayersExpressionsToFile() {
 
-    app.beginUndoGroup("Export Comps Expressions");
-
     (function main () {
         var project = app.project;
         var projectPath = project.file;
         var projectName = projectPath.toString();
-        var comps = project.selection;
+        var projItems = project.selection;
         var expressions = [];
-        var projItems = project.numItems;
 
         // Check if project is saved
         if (projectPath != null) {
@@ -26,28 +23,35 @@
             alert("Save your project to continue.");
         }
 
-        for (var comp = 0; comp < comps.length; comp++) {
-            var curComp = comps[comp];
-            var layers = curComp.layers;
-            var compString = "/*\n" + "\tProject: " + projectName + "\n\tComposition: " + curComp.name + "\n*/";
-            expressions.push(compString);
+        app.beginUndoGroup("Export Comps Expressions");
+        for (var item = 0; item < projItems.length; item++) {
+            var curItem = projItems[item];
 
-            for (var layer = 1; layer <= layers.length; layer++) {
-                var currentLayer = layers[layer];
-                var curLayerName = currentLayer.name;
-                var curLayerIndex = currentLayer.index;
+            if (curItem instanceof CompItem) {
+                var curComp = projItems[item];
+                var layers = curComp.layers;
+                var compString = "/*\n" + "\tProject: " + projectName + "\n\tComposition: " + curComp.name + "\n*/";
+                expressions.push(compString);
 
-                processProperty(currentLayer, curLayerName, curLayerIndex, expressions);
+                for (var layer = 1; layer <= layers.length; layer++) {
+                    var currentLayer = layers[layer];
+                    var curLayerName = currentLayer.name;
+                    var curLayerIndex = currentLayer.index;
+
+                    processProperty(currentLayer, curLayerName, curLayerIndex, expressions);
+                }
+
+                if (expressions.length > 2) {
+                    var expressionsString = expressions.join("\n\n\n");
+                    saveFile(filePath, "Expressions", ".jsx", expressionsString, curComp);
+                    expressions = [];
+                }
+
             }
-
-            var expressionsString = expressions.join("\n\n\n");
-            saveFile(filePath, "Expressions", ".jsx", expressionsString, curComp);
-            expressions = [];
         }
-
+        app.endUndoGroup();
     })();
 
-    app.endUndoGroup();
 
     // Supporting functions
     function processProperty (property, curLayerName, curLayerIndex, expressionsList) {
