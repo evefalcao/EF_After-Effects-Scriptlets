@@ -4,7 +4,7 @@
  * @email             hello@evelinefalcao.com
  * @version           1.0.0
  * @createdFor        Adobe After Effects CC 2024 (Version 24.1.0 Build 78)
- * @description       Exports the expressions of a comp to file.
+ * @description       Exports the expressions of a comp to a .jsx file.
  *========================================================================**/
 
 (function exportLayersExpressionsToFile() {
@@ -58,7 +58,7 @@
     var expressionsString = expressions.join("\n\n");
 
     // Prompt to save the file
-    var file = new File(filePath + "_" + comp.name + "_Expressions.txt").saveDlg("Select the file destination.", "*.txt");
+    var file = new File(filePath + "_" + comp.name + "_Expressions.jsx").saveDlg("Select the file destination.", "*.jsx");
 
     // Write the file
     if (file != null) {
