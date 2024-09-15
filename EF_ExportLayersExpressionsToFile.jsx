@@ -16,8 +16,8 @@
     var projectName = projectPath.toString();
     var comp = project.activeItem;
     var layers = comp.layers;
-    var compName = "/*\n" + "\tProject: " + projectName + "\n\tComposition: " + comp.name + "\n*/";
-    var expressions = [compName];
+    var docHeader = "/*\n" + "\tProject: " + projectName + "\n\tComposition: " + comp.name + "\n*/";
+    var expressions = [docHeader];
 
     function processProperty(property, curLayerName, curLayerIndex) {
 
