@@ -14,9 +14,9 @@
 
     // Pushes every missing footage to the missingItems Array
     for(var item = 1; item <= projectItems.length; item++){
-    if(projectItems[item].footageMissing){
-        var footagePath = projectItems[item].mainSource.missingFootagePath;
-        missingItems.push(footagePath);
+        if(projectItems[item].footageMissing){
+            var footagePath = projectItems[item].mainSource.missingFootagePath;
+            missingItems.push(footagePath);
         }
     }  
 
