@@ -26,7 +26,8 @@
 
             if (property.expressionEnabled) {
                 var string = "// On " + curLayerIndex + ": \"" + curLayerName + "\" - " + property.name + "\n";
-                var expression = string + property.expression;
+                var exp = property.expression.replace(/\n\r/g, "");
+                var expression = string + exp;
                 expressions.push(expression);
             }
 
@@ -55,7 +56,7 @@
     }
 
     // Separates each item with three line breaks
-    var expressionsString = expressions.join("\n\n");
+    var expressionsString = expressions.join("\n\n\n");
 
     // Prompt to save the file
     var file = new File(filePath + "_" + comp.name + "_Expressions.jsx").saveDlg("Select the file destination.", "*.jsx");
