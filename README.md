@@ -54,8 +54,17 @@ A collection of useful Adobe After Effects scriptlets designed to streamline you
 ### [Delete All Effects](https://github.com/evefalcao/EF_After-Effects-Scriptlets/blob/main/EF_DeleteAllEffects.jsx)
    Removes all applied effects from selected layers, helping you start fresh with clean layers.
 
+### [Export All Expressions To File](https://github.com/evefalcao/EF_After-Effects-Scriptlets/blob/main/EF_ExportAllExpressionsToFile.jsx)
+   Quickly exports all expressions in the project to files based on the composition.
+
+### [Export Layers Expressions To File](https://github.com/evefalcao/EF_After-Effects-Scriptlets/blob/main/EF_ExportLayersExpressionsToFile.jsx)
+   Exports the expressions of the active compositions only.
+
 ### [Export Missing Footages Paths To File](https://github.com/evefalcao/EF_After-Effects-Scriptlets/blob/main/EF_ExportMissingFootagesPathsToFile.jsx)
    Exports a list of all missing footage in your project to a text file, making it easier to track and replace missing assets.
+
+### [Export Selected Comps Expressions To File](https://github.com/evefalcao/EF_After-Effects-Scriptlets/blob/main/EF_ExportSelectedCompsExpressions.jsx)
+   Exports the expressions of all selected compositions.
 
 ### [Lock And Hide](https://github.com/evefalcao/EF_After-Effects-Scriptlets/blob/main/EF_LockAndHide.jsx)
    Locks, activates the "shy" mode, and hides all layers within selected compositions, helping protect complex projects from unwanted edits.
