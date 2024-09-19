@@ -1,15 +1,15 @@
 /**========================================================================
- * ?                  EF_ExportLayersExpressionsToFile.jsx
+ * ?                  EF_ExportActiveCompExpressionsToFile.jsx
  * @author            Eveline Falcão (https://evelinefalcao.com)
  * @email             hello@evelinefalcao.com
  * @version           1.0.0
  * @createdFor        Adobe After Effects CC 2024 (Version 24.1.0 Build 78)
- * @description       Exports the expressions of a comp to a .jsx file.
+ * @description       Exports the expressions of the active comp to a .jsx file.
  *========================================================================**/
 
-(function exportLayersExpressionsToFile() {
+(function exportActiveCompExpressionsToFile() {
 
-    app.beginUndoGroup("Export Layers Expressions");
+    app.beginUndoGroup("Export Active Comp Expressions");
 
     var project = app.project;
     var projectPath = project.file;
