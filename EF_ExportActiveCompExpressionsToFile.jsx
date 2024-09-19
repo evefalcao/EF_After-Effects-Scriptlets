@@ -16,7 +16,7 @@
     var projectName = projectPath.toString();
     var comp = project.activeItem;
     var layers = comp.layers;
-    var docHeader = "/*\n" + "\tProject: " + projectName + "\n\tComposition: " + comp.name + "\n*/";
+    var docHeader = "/*\n\tProject: " + projectName + "\n\tComposition: " + comp.name + "\n*/";
     var expressions = [docHeader];
 
     function processProperty(property, curLayerName, curLayerIndex) {
@@ -25,8 +25,8 @@
         if (property.propertyType == PropertyType.PROPERTY) { // Check if value is a single property and do something
 
             if (property.expressionEnabled) {
-                var string = "// On " + curLayerIndex + ": \"" + curLayerName + "\" - " + property.name + "\n";
-                var exp = property.expression.replace(/\n\r/g, "");
+                var string = "// Layer " + curLayerIndex + ": \"" + curLayerName + "\" - " + property.name + "\n";
+                var exp = property.expression.replace(/[\r\n]+/g, "\n").trim();
                 var expression = string + exp;
                 expressions.push(expression);
             }
@@ -49,14 +49,14 @@
     }
 
     // Check if project is saved
-    if(projectPath != null){
+    if (projectPath != null) {
         var filePath = projectPath.toString().replace(".aep", "");
     } else {
         alert("Save your project to continue.")
     }
 
     // Separates each item with three line breaks
-    var expressionsString = expressions.join("\n\n\n");
+    var expressionsString = expressions.join("\n\n\n\n");
 
     // Prompt to save the file
     var file = new File(filePath + "_" + comp.name + "_Expressions.jsx").saveDlg("Select the file destination.", "*.jsx");

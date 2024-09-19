@@ -9,7 +9,7 @@
 
 (function exportAllExpressionsToFile() {
 
-    (function main () {
+    (function main() {
         var project = app.project;
         var projectPath = project.file;
         var projectName = projectPath.toString();
@@ -41,11 +41,11 @@
 
                 if (expressions.length != 0) {
                     // Add the project and comp name to the first element of the array
-                    var compString = "/*\n" + "\tProject: " + projectName + "\n\tComposition: " + curComp.name + "\n*/";
+                    var compString = "/*\n\tProject: " + projectName + "\n\tComposition: " + curComp.name + "\n*/";
                     expressions.unshift(compString);
 
                     // Join array and save file
-                    var expressionsString = expressions.join("\n\n\n");
+                    var expressionsString = expressions.join("\n\n\n\n");
                     saveFile(filePath, "Expressions", ".jsx", expressionsString, curComp);
 
                     // Reset the expressions array
@@ -59,14 +59,14 @@
 
 
     // Supporting functions
-    function processProperty (property, curLayerName, curLayerIndex, expressionsList) {
+    function processProperty(property, curLayerName, curLayerIndex, expressionsList) {
 
         // Pass a layer or a prop
         if (property.propertyType == PropertyType.PROPERTY) { // Check if value is a single property and do something
 
             if (property.expressionEnabled) {
-                var layerAndPropInfo = "// On " + curLayerIndex + ": \"" + curLayerName + "\" - " + property.name;
-                var exp = property.expression.replace(/\n\r/g, "");
+                var layerAndPropInfo = "// Layer " + curLayerIndex + ": \"" + curLayerName + "\" - " + property.name;
+                var exp = property.expression.replace(/[\r\n]+/g, "\n").trim();
                 var expression = layerAndPropInfo + "\n" + exp;
                 expressionsList.push(expression);
             }
@@ -80,7 +80,7 @@
         }
     }
 
-    function saveFile (filePath, fileSuffix, fileFormat, content, comp) {
+    function saveFile(filePath, fileSuffix, fileFormat, content, comp) {
         // Prompt to save the file
         var extension = fileFormat;
         var compName = comp.name;
