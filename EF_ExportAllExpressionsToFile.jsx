@@ -30,8 +30,6 @@
             if (curItem instanceof CompItem) {
                 var curComp = projItems[item];
                 var layers = curComp.layers;
-                var compString = "/*\n" + "\tProject: " + projectName + "\n\tComposition: " + curComp.name + "\n*/";
-                expressions.push(compString);
 
                 for (var layer = 1; layer <= layers.length; layer++) {
                     var currentLayer = layers[layer];
@@ -41,9 +39,16 @@
                     processProperty(currentLayer, curLayerName, curLayerIndex, expressions);
                 }
 
-                if (expressions.length > 2) {
+                if (expressions.length != 0) {
+                    // Add the project and comp name to the first element of the array
+                    var compString = "/*\n" + "\tProject: " + projectName + "\n\tComposition: " + curComp.name + "\n*/";
+                    expressions.unshift(compString);
+
+                    // Join array and save file
                     var expressionsString = expressions.join("\n\n\n");
                     saveFile(filePath, "Expressions", ".jsx", expressionsString, curComp);
+
+                    // Reset the expressions array
                     expressions = [];
                 }
 
