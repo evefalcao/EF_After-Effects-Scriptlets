@@ -70,7 +70,7 @@ A collection of useful Adobe After Effects scriptlets designed to streamline you
    Locks, activates the "shy" mode, and hides all layers within selected compositions, helping protect complex projects from unwanted edits.
 
 ### [Make Properties Valid Again](https://github.com/evefalcao/EF_After-Effects-Scriptlets/blob/main/EF_MakePropertiesValidAgain.jsx)
-Added or removed an effect and your property objects became invaid? This scriptlet will help you create references to find your lost properties.
+   Added or removed an effect and your property objects became invaid? This scriptlet will help you create references to find your lost properties.
 
 ### [Organize Project](https://github.com/evefalcao/EF_After-Effects-Scriptlets/blob/main/EF_OrganizeProject.jsx)
    Sorts project items, tidying up your project based on the item type.
