@@ -12,7 +12,7 @@
     var selectedItems = app.project.selection;
     
     // Open Info panel
-    var infoPanelId = app.findMenuCommandId("Info");
+    var infoPanelId = 2028; // app.findMenuCommandId("Info");
     app.executeCommand(infoPanelId);
 
     // Clean previous outputs
