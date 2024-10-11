@@ -42,6 +42,9 @@ A collection of useful Adobe After Effects scriptlets designed to streamline you
 ### [Count Selected Items](https://github.com/evefalcao/EF_After-Effects-Scriptlets/blob/main/EF_CountSelectedItems.jsx)
    Counts the number of selected items in the Project Panel and displays the result in the Info Panel, providing quick project insights.
 
+### [Count Selected Items UI](https://github.com/evefalcao/EF_After-Effects-Scriptlets/blob/main/EF_CountSelectedItemsUI.jsx)
+   A dockable UI to count the selected items in the project panel.
+
 ### [Create Folder Structure](https://github.com/evefalcao/EF_After-Effects-Scriptlets/blob/main/EF_CreateFolderStructure.jsx)
    Automatically creates a structured folder hierarchy in your project, including subfolders for inputs, precomps, and outputs.
 
