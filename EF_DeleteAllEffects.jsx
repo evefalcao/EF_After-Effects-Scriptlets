@@ -9,7 +9,7 @@
 
 (function deleteAllEffects(){
     
-    app.beginUndoGroup("'Reset Transform'");
+    app.beginUndoGroup("'Delete All Effects'");
 
     var comp = app.project.activeItem;
     var layers = comp.selectedLayers;
