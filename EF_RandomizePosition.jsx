@@ -26,7 +26,7 @@
             app.beginUndoGroup("'Randomize Position'");
             for (var i = 0; i < layers.length; i++) {
                 var currentLayer = layers[i];
-                var positionProp = currentLayer.property("ADBE Position");
+                var positionProp = currentLayer.property("Position");
         
                 if (positionProp && positionProp.canSetExpression) {
                     var currentPosition = positionProp.value;
