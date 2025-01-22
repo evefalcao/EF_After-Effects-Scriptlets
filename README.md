@@ -33,6 +33,9 @@ A collection of useful Adobe After Effects scriptlets designed to streamline you
 ### [Add Selected PreComps To Render Queue](https://github.com/evefalcao/EF_After-Effects-Scriptlets/blob/main/EF_AddSelectedPreCompsToRenderQueue.jsx)
    Automatically adds selected precompositions within an active composition to the Render Queue.
 
+### [Batch Edit Effect Property](https://github.com/evefalcao/EF_After-Effects-Scriptlets/blob/main/EF_EF_BatchEditEffectProp.jsx)
+   Batch edit properties of effects across one or more compositions selected in the project panel.
+
 ### [Clean Property Keyframes](https://github.com/evefalcao/EF_After-Effects-Scriptlets/blob/main/EF_CleanPropertyKeyframes.jsx)
    Removes all keyframes from selected properties across multiple layers.
 
@@ -54,6 +57,9 @@ A collection of useful Adobe After Effects scriptlets designed to streamline you
 ### [Create Shapes From Text](https://github.com/evefalcao/EF_After-Effects-Scriptlets/blob/main/EF_CreateShapesFromText.jsx)
    Converts one or more selected Text layers into Shape layers.
 
+### [Deactivate Effects On Comps](https://github.com/evefalcao/EF_After-Effects-Scriptlets/blob/main/EF_DeactivateEffectsOnComps.jsx)
+   Disable a given effect in the selected compositions.
+
 ### [Delete All Effects](https://github.com/evefalcao/EF_After-Effects-Scriptlets/blob/main/EF_DeleteAllEffects.jsx)
    Removes all applied effects from selected layers, helping you start fresh with clean layers.
 
@@ -69,6 +75,9 @@ A collection of useful Adobe After Effects scriptlets designed to streamline you
 ### [Export Selected Comps Expressions To File](https://github.com/evefalcao/EF_After-Effects-Scriptlets/blob/main/EF_ExportSelectedCompsExpressions.jsx)
    Exports the expressions of all selected compositions.
 
+### [Find and Replace Layer](https://github.com/evefalcao/EF_After-Effects-Scriptlets/blob/main/EF_FindAndReplaceLayer.jsx)
+   Search for a layer by layer name and replace it with another item across compositions.
+
 ### [Lock And Hide](https://github.com/evefalcao/EF_After-Effects-Scriptlets/blob/main/EF_LockAndHide.jsx)
    Locks, activates the "shy" mode, and hides all layers within selected compositions, helping protect complex projects from unwanted edits.
 
@@ -77,6 +86,9 @@ A collection of useful Adobe After Effects scriptlets designed to streamline you
 
 ### [Organize Project](https://github.com/evefalcao/EF_After-Effects-Scriptlets/blob/main/EF_OrganizeProject.jsx)
    Sorts project items, tidying up your project based on the item type.
+
+### [Randomize Position](https://github.com/evefalcao/EF_After-Effects-Scriptlets/blob/main/EF_RandomizePosition.jsx)
+   Randomize the position of selected layers within a specified range.
 
 ### [Remove Empty Folders](https://github.com/evefalcao/EF_After-Effects-Scriptlets/blob/main/EF_RemoveEmptyFolders.jsx)
    Removes unused folders in your project panel.
@@ -101,6 +113,9 @@ A collection of useful Adobe After Effects scriptlets designed to streamline you
 
 ### [Save Selected Comps As Projects](https://github.com/evefalcao/EF_After-Effects-Scriptlets/blob/main/EF_SaveSelectedCompsAsProjects.jsx)
    Saves selected compositions in the Project Panel as individual project files, enabling modular project management and easier asset sharing.
+
+### [Save Selected Comps to PNG](https://github.com/evefalcao/EF_After-Effects-Scriptlets/blob/main/EF_SaveSelectedCompsToPNG.jsx)
+   Export selected compositions as PNG files for quick previews.
 
 ### [Select Every Other Layer](https://github.com/evefalcao/EF_After-Effects-Scriptlets/blob/main/EF_SelectEveryOtherLayer.jsx)
    Selects every other layer starting from the first selected layer, ignoring locked layers, which is useful for quickly modifying or shifting things around.
