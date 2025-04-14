@@ -1,3 +1,12 @@
+/**========================================================================
+ * ?                  EF_SaveGivenFrameToPSD.jsx
+ * @author         :  Eveline Falcão <https://evelinefalcao.com>
+ * @email          :  hello@evelinefalcao.com
+ * @version        :  1.0.0
+ * @createdFor     :  Adobe After Effects CC 2024 (Version 24.1.0 Build 78)
+ * @description    :  Quickly saves the given frame of the selected Comps to PSD next to the project file.
+ *========================================================================**/
+
 (function saveFrameToPSD() {
 
     function framesToCurrentTime(frameNumber, frameRate) {
