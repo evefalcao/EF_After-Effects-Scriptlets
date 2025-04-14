@@ -17,12 +17,14 @@
         return filename;
     }
 
-    function createCompWithItem(baseName, width, height, item) {
+    function createCompWithItem(baseName, width, height, item, createdCompsArray) {
         var duration = item.duration || 1;
         var frameRate = item.mainSource && item.mainSource.frameRate ? item.mainSource.frameRate : 30;
 
         var compName = baseName + "_" + width + "x" + height;
         var comp = app.project.items.addComp(compName, width, height, 1, duration, frameRate);
+        createdCompsArray.push(comp);
+        
         var layer = comp.layers.add(item);
 
         var itemWidth = item.width;
@@ -45,6 +47,7 @@
     app.beginUndoGroup("'Add Items to Comps'");
 
     var selectedItems = app.project.selection;
+    var createdComps = [];
 
     if (selectedItems.length === 0) {
         alert("Please select one or more footage items in the Project panel.");
@@ -61,9 +64,17 @@
             continue;
         }
 
-        createCompWithItem(curItemName, 1920, 1080, curItem);
-        createCompWithItem(curItemName, 1080, 1080, curItem);
-        createCompWithItem(curItemName, 1080, 1920, curItem);
+        createCompWithItem(curItemName, 1920, 1080, curItem, createdComps);
+        createCompWithItem(curItemName, 1080, 1080, curItem, createdComps);
+        createCompWithItem(curItemName, 1080, 1920, curItem, createdComps);
+    }
+
+    for (var j = 1; j <= app.project.numItems; j++) {
+        app.project.item(j).selected = false;
+    }
+
+    for (var k = 0; k < createdComps.length; k++) {
+        createdComps[k].selected = true;
     }
 
     app.endUndoGroup();
