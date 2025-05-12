@@ -12,7 +12,7 @@
     var fileTypesObj = {
         "Video": [".crm", ".mxf", ".hevc", ".3pg", ".3g2", ".amc", ".swf", ".flv", ".f4v", ".gif", ".mov", ".mwts", ".m4v", 
             ".mpg", ".m2p", ".m2v", ".m2a", ".m2t", ".mp4", ".omf", ".avi", ".wmv", ".wma"],
-        "Still": [".ai", ".eps", ".ps", ".pdf", ".psd", ".bmp", ".rle", ".dib", ".tif", ".crw", ".nef", ".raf", ".orf", 
+        "Still": [".ai", ".eps", ".ps", ".pdf", ".psd", ".psb", ".bmp", ".rle", ".dib", ".tif", ".crw", ".nef", ".raf", ".orf", 
             ".mrw", ".dcr", ".mos", ".raw", ".pef", ".srf", ".dng", ".x3f", ".cr2", ".erf", ".cin", ".dpx", ".rla", 
             ".rpf", ".img", ".ei", ".iff", ".tdi", ".jpg", ".jpe", ".heif", ".exr", ".pcx", ".png", ".hdr", ".rgbe", 
             ".xyze", ".sgi", ".bw", ".rgb", ".pic", ".tga", ".vda", ".icb", ".vst"],
