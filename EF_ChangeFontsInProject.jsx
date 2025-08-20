@@ -7,23 +7,28 @@
  * @description    :  Changes the font and style of text layers of the entire project.
  *========================================================================**/
 
-var newFont = "Shikamaru";
+var newFont = "mountain_king"; // Use the postscript name as the font name
 var newStyle = "Regular";
 
-function changeFontsInTextLayer(textLayer, fontName, fontStyle) {
+// Check the actual font name
+// var textProp = app.project.activeItem.selectedLayers[0].property("Source Text");
+// var textDocument = textProp.value;
+// alert(textDocument.font);
+
+function changeFontsInTextLayer(textLayer, fontName) {
     var textProp = textLayer.property("Source Text");
     var textDocument = textProp.value;
     textDocument.font = fontName;
     textProp.setValue(textDocument);
 }
 
-function processComp(comp, fontName, fontStyle) {
+function processComp(comp, fontName) {
     for (var i = 1; i <= comp.numLayers; i++) {
         var layer = comp.layer(i);
         if (layer instanceof TextLayer) {
-            changeFontsInTextLayer(layer, fontName, fontStyle);
+            changeFontsInTextLayer(layer, fontName);
         } else if (layer instanceof AVLayer && layer.source instanceof CompItem) {
-            processComp(layer.source, fontName, fontStyle);
+            processComp(layer.source, fontName);
         }
     }
 }
