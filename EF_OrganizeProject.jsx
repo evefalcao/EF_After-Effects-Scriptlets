@@ -15,7 +15,7 @@
         "Still": [".ai", ".eps", ".ps", ".pdf", ".psd", ".psb", ".bmp", ".rle", ".dib", ".tif", ".crw", ".nef", ".raf", ".orf", 
             ".mrw", ".dcr", ".mos", ".raw", ".pef", ".srf", ".dng", ".x3f", ".cr2", ".erf", ".cin", ".dpx", ".rla", 
             ".rpf", ".img", ".ei", ".iff", ".tdi", ".jpg", ".jpe", ".heif", ".exr", ".pcx", ".png", ".hdr", ".rgbe", 
-            ".xyze", ".sgi", ".bw", ".rgb", ".pic", ".tga", ".vda", ".icb", ".vst"],
+            ".xyze", ".sgi", ".bw", ".rgb", ".pic", ".tga", ".vda", ".icb", ".vst", ".webp"],
         "Audio": [".aac", ".m4a", ".aif", ".aiff", ".mp3", ".mpeg", ".mpg", ".mpa",  ".mpe",".wav"],
         "Project": [".aep", ".aepx", ".prproj", ".aaf"],
         "Data": [".json", ".mgjson", ".csv", ".tsv", ".txt"],
